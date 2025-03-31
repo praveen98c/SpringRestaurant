@@ -33,7 +33,6 @@ public class AuthenticationController {
 		try {
 			authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
-
 			String token = jwtProvider.generateToken(authRequest.getUsername());
 			AuthResponse authResponse = new AuthResponse(token);
 			ApiResponse<AuthResponse> apiResponse = new ApiResponse<AuthResponse>(authResponse, "Login Successfull");
@@ -53,6 +52,11 @@ public class AuthenticationController {
 		} catch (UserAlreadyExistsException e) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("User Already Present");
 		}
+	}
+	
+	@PostMapping("/hello")
+	public ResponseEntity<String> hello(@RequestBody AuthRequest authRequest) {
+		return ResponseEntity.ok("Hello world");
 	}
 }
 
