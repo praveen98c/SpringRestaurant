@@ -17,4 +17,9 @@ public class RestApiPaths {
 		public static final String BASE = "/api/restaurants";
 		public static final String RESTAURANT_BY_ID = "/{" + PathVariables.ID + "}";
 	}
+	
+	public static class Menus {
+		public static final String BASE = "/api/menus";
+		public static final String RESTAURANT_BY_ID = "/{" + PathVariables.ID + "}";
+	}
 }
