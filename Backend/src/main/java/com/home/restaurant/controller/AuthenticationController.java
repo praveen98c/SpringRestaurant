@@ -1,7 +1,5 @@
 package com.home.restaurant.controller;
 
-import java.util.Optional;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.*;
@@ -9,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.AuthenticationException;
 
 import com.home.restaurant.constants.RestApiPaths;
+import com.home.restaurant.dto.request.AuthRequest;
+import com.home.restaurant.dto.response.ApiResponse;
+import com.home.restaurant.dto.response.AuthResponse;
 import com.home.restaurant.exceptions.UserAlreadyExistsException;
 import com.home.restaurant.security.jwt.interfaces.JwtProvider;
 import com.home.restaurant.service.interfaces.UserService;
@@ -52,66 +53,5 @@ public class AuthenticationController {
 		} catch (UserAlreadyExistsException e) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("User Already Present");
 		}
-	}
-}
-
-class AuthRequest {
-	private String username;
-	private String password;
-	private String name;
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-}
-
-class ApiResponse<T> {
-	private Optional<T> data;
-	private String message;
-
-	public ApiResponse(T data, String message) {
-		this.data = Optional.ofNullable(data);
-		this.message = message;
-	}
-
-	public Optional<T> getData() {
-		return data;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-}
-
-class AuthResponse {
-
-	private String token;
-
-	public AuthResponse(String token) {
-		this.token = token;
-	}
-
-	public String getToken() {
-		return token;
 	}
 }
