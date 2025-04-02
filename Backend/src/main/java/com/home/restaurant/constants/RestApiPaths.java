@@ -5,7 +5,6 @@ public class RestApiPaths {
 	public static class PathVariables {
 		public static final String ID = "id";
 	}
-	
 
 	public static class Auth {
 		public static final String BASE = "/api/auth";
@@ -20,6 +19,11 @@ public class RestApiPaths {
 	
 	public static class Menus {
 		public static final String BASE = "/api/menus";
-		public static final String RESTAURANT_BY_ID = "/{" + PathVariables.ID + "}";
+		public static final String RESTAURANT_BY_ID = "/restaurant/{" + PathVariables.ID + "}";
+	}
+	
+	public static class FoodItems {
+		public static final String BASE = "/api/fooditems";
+		public static final String MENU_BY_ID = "/menu/{" + PathVariables.ID + "}";
 	}
 }

@@ -24,7 +24,8 @@ public class MenuController {
 	}
 
 	@GetMapping(RestApiPaths.Menus.RESTAURANT_BY_ID)
-	public ResponseEntity<ApiResponse<List<MenuDTO>>> getMenus(@PathVariable(RestApiPaths.PathVariables.ID) Long id) {
+	public ResponseEntity<ApiResponse<List<MenuDTO>>> getMenusByRestaurantId(
+			@PathVariable(RestApiPaths.PathVariables.ID) Long id) {
 		List<MenuDTO> menus = menuService.getMenusByRestaurantId(id);
 		ApiResponse<List<MenuDTO>> response = new ApiResponse<>(menus, "Successfully retrieved menus of restaurant");
 		return menus != null ? ResponseEntity.ok(response) : ResponseEntity.notFound().build();

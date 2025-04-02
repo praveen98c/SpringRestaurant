@@ -15,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
 
 @Entity
 @Table(name = "food_item")
@@ -28,19 +29,24 @@ public class FoodItem {
     @JoinColumn(name = "menu_id")
     private Menu menu;
 
+    @Getter
     @Column(nullable = false)
     private String name;
     
+    @Getter
     @Convert(converter = CuisineConverter.class)
     @Column(nullable = false)
     private Cuisine cuisine;
     
+    @Getter
     @Column(nullable = false)
     private String description;
     
+    @Getter
     @Column(precision = 3, scale = 1)
     private BigDecimal rating; 
     
+    @Getter
     @Column(nullable = false)
     private BigDecimal price;
 

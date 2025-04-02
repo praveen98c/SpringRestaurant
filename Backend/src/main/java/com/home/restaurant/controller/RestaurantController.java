@@ -22,7 +22,7 @@ public class RestaurantController {
 	}
 
 	@GetMapping(RestApiPaths.Restaurants.RESTAURANT_BY_ID)
-	public ResponseEntity<ApiResponse<RestaurantDTO>> getRestaurant(@PathVariable(RestApiPaths.PathVariables.ID) Long id) {
+	public ResponseEntity<ApiResponse<RestaurantDTO>> getRestaurantById(@PathVariable(RestApiPaths.PathVariables.ID) Long id) {
 		RestaurantDTO restaurant = restaurantService.getRestaurantById(id);
 		ApiResponse<RestaurantDTO> response = new ApiResponse<>(restaurant, "Successfully retrieved restaurant");
 		return restaurant != null ? ResponseEntity.ok(response) : ResponseEntity.notFound().build();
