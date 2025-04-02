@@ -53,11 +53,6 @@ public class AuthenticationController {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("User Already Present");
 		}
 	}
-	
-	@PostMapping("/hello")
-	public ResponseEntity<String> hello(@RequestBody AuthRequest authRequest) {
-		return ResponseEntity.ok("Hello world");
-	}
 }
 
 class AuthRequest {

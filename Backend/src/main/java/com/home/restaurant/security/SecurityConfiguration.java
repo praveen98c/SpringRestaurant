@@ -2,6 +2,7 @@ package com.home.restaurant.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -31,7 +32,9 @@ public class SecurityConfiguration {
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers(RestApiPaths.Auth.BASE + RestApiPaths.Auth.LOGIN,
 								RestApiPaths.Auth.BASE + RestApiPaths.Auth.REGISTER)
-						.permitAll().requestMatchers(RestApiPaths.Auth.BASE + "/hello").authenticated())
+						.permitAll()
+						.requestMatchers(RestApiPaths.Restaurants.BASE + RestApiPaths.Restaurants.RESTAURANT_BY_ID)
+						.authenticated())
 				.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 		return http.build();
