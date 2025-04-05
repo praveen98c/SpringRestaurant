@@ -1,7 +1,7 @@
 
 package com.home.restaurant.service;
 
-import com.home.restaurant.exceptions.UserAlreadyExistsException;
+import com.home.restaurant.exception.UserAlreadyExistsException;
 import com.home.restaurant.model.User;
 import com.home.restaurant.repository.UserRepository;
 import com.home.restaurant.service.interfaces.UserService;

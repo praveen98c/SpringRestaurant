@@ -6,9 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.home.restaurant.dto.model.FoodItemDTO;
-import com.home.restaurant.dto.model.MenuDTO;
 import com.home.restaurant.model.FoodItem;
-import com.home.restaurant.model.Menu;
 import com.home.restaurant.repository.FoodItemRepository;
 import com.home.restaurant.service.interfaces.FoodItemService;
 

@@ -1,21 +1,21 @@
 package com.home.restaurant.dto.response;
 
-import java.util.Optional;
+import com.home.restaurant.constants.RestApiCode;
 
-public class ApiResponse<T> {
-	private Optional<T> data;
+public class ApiResponse {
+	private int code;
 	private String message;
 
-	public ApiResponse(T data, String message) {
-		this.data = Optional.ofNullable(data);
-		this.message = message;
-	}
-
-	public Optional<T> getData() {
-		return data;
+	public ApiResponse(RestApiCode appCode) {
+		this.message = appCode.getMessage();
+		this.code = appCode.getCode();
 	}
 
 	public String getMessage() {
 		return message;
+	}
+
+	public int getCode() {
+		return code;
 	}
 }

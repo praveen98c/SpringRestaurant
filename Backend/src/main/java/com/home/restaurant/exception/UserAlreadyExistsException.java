@@ -1,5 +1,5 @@
 
-package com.home.restaurant.exceptions;
+package com.home.restaurant.exception;
 
 @SuppressWarnings("serial")
 public class UserAlreadyExistsException extends RuntimeException {

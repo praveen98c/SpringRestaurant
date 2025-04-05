@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.home.restaurant.constants.RestApiCode;
 import com.home.restaurant.constants.RestApiPaths;
 import com.home.restaurant.dto.model.FoodItemDTO;
 import com.home.restaurant.dto.response.ApiResponse;
@@ -24,11 +25,8 @@ public class FoodItemController {
 	}
 
 	@GetMapping(RestApiPaths.FoodItems.MENU_BY_ID)
-	public ResponseEntity<ApiResponse<List<FoodItemDTO>>> getFoodItemsByMenuId(
-			@PathVariable(RestApiPaths.PathVariables.ID) Long id) {
+	public List<FoodItemDTO> getFoodItemsByMenuId(@PathVariable(RestApiPaths.PathVariables.ID) Long id) {
 		List<FoodItemDTO> foodItems = foodItemService.getFoodItemsByMenuId(id);
-		ApiResponse<List<FoodItemDTO>> response = new ApiResponse<>(foodItems,
-				"Successfully retrieved food items of menu");
-		return foodItems != null ? ResponseEntity.ok(response) : ResponseEntity.notFound().build();
+		return foodItems;
 	}
 }
