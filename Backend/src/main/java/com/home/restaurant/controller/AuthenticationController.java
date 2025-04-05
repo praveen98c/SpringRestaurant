@@ -6,6 +6,7 @@ import org.springframework.security.authentication.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.AuthenticationException;
 
+import com.home.restaurant.constants.RestApiCode;
 import com.home.restaurant.constants.RestApiPaths;
 import com.home.restaurant.dto.request.AuthRequest;
 import com.home.restaurant.dto.response.ApiResponse;
@@ -36,22 +37,25 @@ public class AuthenticationController {
 					new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
 			String token = jwtProvider.generateToken(authRequest.getUsername());
 			AuthResponse authResponse = new AuthResponse(token);
-			ApiResponse<AuthResponse> apiResponse = new ApiResponse<AuthResponse>(authResponse, "Login Successfull");
+			ApiResponse<AuthResponse> apiResponse = new ApiResponse<AuthResponse>(RestApiCode.LOGIN_SUCCESS,
+					authResponse);
 			return ResponseEntity.ok(apiResponse);
 		} catch (AuthenticationException e) {
-			ApiResponse<AuthResponse> response = new ApiResponse<AuthResponse>(null, "Login failed");
+			ApiResponse<AuthResponse> response = new ApiResponse<AuthResponse>(RestApiCode.AUTH_FAILED);
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
 		}
 	}
 
 	@PostMapping(RestApiPaths.Auth.REGISTER)
-	public ResponseEntity<String> register(@RequestBody AuthRequest authRequest) {
+	public ResponseEntity<ApiResponse<Void>> register(@RequestBody AuthRequest authRequest) {
 		try {
 			restaurentUserService.registerUser(authRequest.getName(), authRequest.getUsername(),
 					authRequest.getPassword());
-			return ResponseEntity.status(HttpStatus.CREATED).body("User Created Successfully");
+			ApiResponse<Void> apiResponse = new ApiResponse<Void>(RestApiCode.REGISTER_SUCCESS);
+			return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
 		} catch (UserAlreadyExistsException e) {
-			return ResponseEntity.status(HttpStatus.CONFLICT).body("User Already Present");
+			ApiResponse<Void> apiResponse = new ApiResponse<Void>(RestApiCode.USER_ALREADY_EXISTS);
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(apiResponse);
 		}
 	}
 }

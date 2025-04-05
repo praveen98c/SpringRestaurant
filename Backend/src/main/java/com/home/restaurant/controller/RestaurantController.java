@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.home.restaurant.constants.RestApiCode;
 import com.home.restaurant.constants.RestApiPaths;
 import com.home.restaurant.dto.model.RestaurantDTO;
 import com.home.restaurant.dto.response.ApiResponse;
@@ -24,7 +25,7 @@ public class RestaurantController {
 	@GetMapping(RestApiPaths.Restaurants.RESTAURANT_BY_ID)
 	public ResponseEntity<ApiResponse<RestaurantDTO>> getRestaurantById(@PathVariable(RestApiPaths.PathVariables.ID) Long id) {
 		RestaurantDTO restaurant = restaurantService.getRestaurantById(id);
-		ApiResponse<RestaurantDTO> response = new ApiResponse<>(restaurant, "Successfully retrieved restaurant");
+		ApiResponse<RestaurantDTO> response = new ApiResponse<>(RestApiCode.RESTAURANT_REGRIEVE_SUCCESS, restaurant);
 		return restaurant != null ? ResponseEntity.ok(response) : ResponseEntity.notFound().build();
 	}
 }

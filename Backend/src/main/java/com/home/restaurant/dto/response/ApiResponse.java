@@ -2,13 +2,23 @@ package com.home.restaurant.dto.response;
 
 import java.util.Optional;
 
-public class ApiResponse<T> {
-	private Optional<T> data;
-	private String message;
+import com.home.restaurant.constants.RestApiCode;
 
-	public ApiResponse(T data, String message) {
+public class ApiResponse<T> {
+	private int code;
+	private String message;
+	private Optional<T> data;
+
+	public ApiResponse(RestApiCode appCode, T data) {
+		this.message = appCode.getMessage();
+		this.code = appCode.getCode();
 		this.data = Optional.ofNullable(data);
-		this.message = message;
+	}
+
+	public ApiResponse(RestApiCode appCode) {
+		this.message = appCode.getMessage();
+		this.code = appCode.getCode();
+		this.data = null;
 	}
 
 	public Optional<T> getData() {
@@ -17,5 +27,9 @@ public class ApiResponse<T> {
 
 	public String getMessage() {
 		return message;
+	}
+
+	public int getCode() {
+		return code;
 	}
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.home.restaurant.constants.RestApiCode;
 import com.home.restaurant.constants.RestApiPaths;
 import com.home.restaurant.dto.model.MenuDTO;
 import com.home.restaurant.dto.response.ApiResponse;
@@ -27,7 +28,7 @@ public class MenuController {
 	public ResponseEntity<ApiResponse<List<MenuDTO>>> getMenusByRestaurantId(
 			@PathVariable(RestApiPaths.PathVariables.ID) Long id) {
 		List<MenuDTO> menus = menuService.getMenusByRestaurantId(id);
-		ApiResponse<List<MenuDTO>> response = new ApiResponse<>(menus, "Successfully retrieved menus of restaurant");
+		ApiResponse<List<MenuDTO>> response = new ApiResponse<>(RestApiCode.MENU_ITEMS_BY_RESTAURANT_RETRIEVE_SUCCESS, menus);
 		return menus != null ? ResponseEntity.ok(response) : ResponseEntity.notFound().build();
 	}
 }
