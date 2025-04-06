@@ -7,7 +7,10 @@
 
 import Foundation
 
-struct ApiResponse: Codable {
+struct ApiResponse<T: Codable>: Codable {
     let message: String
     let code: Int
+    let data: T?
 }
+
+struct EmptyResponse: Codable {}
