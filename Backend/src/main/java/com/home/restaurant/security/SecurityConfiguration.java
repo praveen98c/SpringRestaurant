@@ -29,6 +29,7 @@ public class SecurityConfiguration {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests(auth -> auth
+						.requestMatchers("/images/**").permitAll()
 						.requestMatchers(RestApiPaths.Auth.BASE + RestApiPaths.Auth.LOGIN,
 								RestApiPaths.Auth.BASE + RestApiPaths.Auth.REGISTER)
 						.permitAll()

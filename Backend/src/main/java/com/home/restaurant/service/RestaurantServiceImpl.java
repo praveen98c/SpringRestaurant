@@ -18,6 +18,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 	
 	public RestaurantDTO getRestaurantById(Long id) {
 		Restaurant restaurant = restaurantRepository.getReferenceById(id);
-		return new RestaurantDTO(restaurant.getId(), restaurant.getName(), restaurant.getLocation());
+		return new RestaurantDTO(restaurant.getId(), restaurant.getName(), restaurant.getLocation(), restaurant.getImageUrl());
 	}
 }
