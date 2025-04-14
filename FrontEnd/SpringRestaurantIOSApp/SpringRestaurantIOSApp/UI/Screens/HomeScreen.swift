@@ -11,13 +11,15 @@ import SwiftUI
 struct HomeScreen: View {
     
     var authManaging: AuthManagingProtocol
+    let appContext: AppContext
     
-    init(authManaging: AuthManagingProtocol) {
+    init(appContext: AppContext, authManaging: AuthManagingProtocol) {
         self.authManaging = authManaging
+        self.appContext = appContext
     }
     
     var body: some View {
-        Text("Hello, World!")
+        HomeView(appContext: appContext)
         Button("Logout", action: {
             Task {
                 authManaging.logout()

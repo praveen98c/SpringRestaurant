@@ -11,8 +11,10 @@ struct AppContext {
     let restApiClient: RestApiProtocol
     let keychainValues: KeyChainValuesProtocol = KeyChainValues()
     let jwtHelper: JWTHelperProtocol = JWTHelper()
+    let services: ServicesProtocol
     
     init() {
         restApiClient = RestApiClient(networkManager: NetworkManager(), baseUrl: "http://127.0.0.1:8081", keyChainValues: keychainValues)
+        services = Services(restApiClient: restApiClient)
     }
 }

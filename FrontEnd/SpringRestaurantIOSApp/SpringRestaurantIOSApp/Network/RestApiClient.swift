@@ -21,9 +21,9 @@ enum RestEndPoint: String {
 
 final class RestApiClient: RestApiProtocol {
     
-    let networkManager: NetworkManagerProtocol
-    let baseUrl: String
-    var keyChainValues: KeyChainValuesProtocol
+    private let networkManager: NetworkManagerProtocol
+    private let baseUrl: String
+    private var keyChainValues: KeyChainValuesProtocol
     
     init(networkManager: NetworkManagerProtocol, baseUrl: String, keyChainValues: KeyChainValuesProtocol) {
         self.networkManager = networkManager
