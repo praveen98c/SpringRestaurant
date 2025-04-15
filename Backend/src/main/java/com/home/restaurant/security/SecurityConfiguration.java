@@ -33,7 +33,9 @@ public class SecurityConfiguration {
 						.requestMatchers(RestApiPaths.Auth.BASE + RestApiPaths.Auth.LOGIN,
 								RestApiPaths.Auth.BASE + RestApiPaths.Auth.REGISTER)
 						.permitAll()
-						.requestMatchers(RestApiPaths.Restaurants.BASE + RestApiPaths.Restaurants.RESTAURANT_BY_ID,
+						.requestMatchers(
+								RestApiPaths.Restaurants.BASE,
+								RestApiPaths.Restaurants.BASE + RestApiPaths.Restaurants.RESTAURANT_BY_ID,
 								RestApiPaths.Menus.BASE + RestApiPaths.Menus.RESTAURANT_BY_ID,
 								RestApiPaths.FoodItems.BASE + RestApiPaths.FoodItems.MENU_BY_ID)
 						.authenticated())
